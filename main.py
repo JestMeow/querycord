@@ -29,24 +29,13 @@ async def on_ready():
 # ==================================================
 
 
-statements = [
-    'SELECT',
-    'INSERT',
-    'DELETE',
-    'UPDATE'
-]
-
 @bot.command(name="db", description="Database command.")
-async def dbCmd(ctx, sql, table: str | None):
+async def dbCmd(ctx, sql, tablefmt: str | None):
     if ctx.author.name not in users_with_dbpermission:
         await ctx.reply('You do not have permission to database.')
         return
     
-    
-    if not sql.strip().upper().startswith(tuple(statements)):
-        await ctx.send(f'Only {', '.join(statements)} statements are allowed.')
-        return
-    
+
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -59,9 +48,9 @@ async def dbCmd(ctx, sql, table: str | None):
             headers = [desc[0] for desc in cursor.description]
 
             formatted_output = '\n'.join(str(row) for row in record) or 'No results.'
-            formatted_table = tabulate(record, headers=headers, tablefmt='grid')
+            formatted_table = tabulate(record, headers=headers, tablefmt=tablefmt or 'grid')
 
-            if table == 'tabulate':
+            if tablefmt:
                 formatted_output = formatted_table
 
             await ctx.send(f'**Output:**\n```\n{formatted_output}```')

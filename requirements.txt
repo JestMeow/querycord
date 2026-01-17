@@ -1,5 +1,4 @@
 discord
 psycopg2
 tabulate
-os
-dotenv
+python-dotenv
