@@ -77,4 +77,11 @@ async def test(ctx, arg):
 
 
 
+
+@bot.command(name='say', description='Say command.')
+async def test(ctx, arg):
+    await ctx.send(arg)
+
+
+
 bot.run(discord_token)
