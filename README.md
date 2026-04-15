@@ -1,7 +1,7 @@
 # QueryCord
 A self-hosted Discord bot script for executing PostgreSQL queries from Discord.
 
-## Overvier
+## Overview
 **QueryCord** is a self-hosted Discord bot script that allows trusted users to execute PostgreSQL quaries directly from Discord.
 
 It is designed to be deployed as part of your own Discord bot, not invited as a shared or hosted bot. You run it yourself and decide who has access.
